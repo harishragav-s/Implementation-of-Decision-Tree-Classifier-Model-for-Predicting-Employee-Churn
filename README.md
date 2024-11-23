@@ -7,23 +7,27 @@ To write a program to implement the Decision Tree Classifier Model for Predictin
 1. Hardware – PCs
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
-## Algorithm
-STEP 1 . Start
-STEP 2 . attach the given data file
-STEP 3 . now find the satisfaction level of employee data
-STEP 4 .find the accuracy and new predict value
-STEP 5 . Stop
+### Algorithm
+
+1. Load the employee dataset and display basic information, including null values and class distribution of the left column.
+2. Encode the categorical salary column using Label Encoding.
+3. Define the features (X) and target (y) by selecting relevant columns.
+4. Split the data into training and testing sets (80-20 split).
+5. Initialize a Decision Tree Classifier with the entropy criterion and train it on the training data.
+6. Predict the target values for the test set.
+7. Calculate and display the model's accuracy.
+8. Compute and display the confusion matrix for the predictions.
+9. Predict the left status for a new employee sample.
 
 ## Program:
 ```
 /*
 Program to implement the Decision Tree Classifier Model for Predicting Employee Churn.
-Developed by: HARISH RAGAV S
-RegisterNumber:  212222110013
-*/
+Developed by: Harish Ragav S
+RegisterNumber: 212222110013
 
 import pandas as pd
-data=pd.read_csv("C:/Users/admin/Downloads/Employee.csv")
+data=pd.read_csv("Employee.csv")
 data.head()
 data.info()
 data.isnull().sum()
@@ -31,7 +35,7 @@ data["left"].value_counts()
 from sklearn.preprocessing import LabelEncoder
 le=LabelEncoder()
 data["salary"]=le.fit_transform(data["salary"])
-data.head()
+print(data.head())
 x=data[["satisfaction_level","last_evaluation","number_project","average_montly_hours","time_spend_company","Work_accident","promotion_last_5years","salary"]]
 x.head()
 y=data["left"]
@@ -43,15 +47,24 @@ dt.fit(x_train,y_train)
 y_pred=dt.predict(x_test)
 from sklearn import metrics
 accuracy=metrics.accuracy_score(y_test,y_pred)
-accuracy
+print("Accuracy:",accuracy)
 dt.predict([[0.5,0.8,9,260,6,0,1,2]])
+
+*/
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/045f5713-68c8-45cc-8025-06a563755566)
 
-![image](https://github.com/user-attachments/assets/7b2e849b-5362-42c7-aa9b-e11197a18184)
-![image](https://github.com/user-attachments/assets/4eba14b4-c2cb-4e71-80d9-5f15d83fa2a0)
+![Screenshot 2024-10-18 143253](https://github.com/user-attachments/assets/64f2cd29-75fd-4b7a-9890-3f98c620bc7a)
+
+![Screenshot 2024-10-18 143259](https://github.com/user-attachments/assets/241911d5-7b91-446a-bd79-fd762e0f3b3c)
+
+![Screenshot 2024-10-18 143307](https://github.com/user-attachments/assets/24dfd526-82bd-4564-918a-47d005ac357d)
+
+![Screenshot 2024-10-18 143313](https://github.com/user-attachments/assets/2435dd99-6c52-4bee-9ea6-98bc20551f56)
+
+## Accuracy:
+![Screenshot 2024-10-18 143327](https://github.com/user-attachments/assets/2d201ebd-7425-4361-bfaf-c19901280702)
 
 
 
